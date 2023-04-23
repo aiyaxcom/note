@@ -1,3 +1,9 @@
+## Https证书
+### 生成证书
+sudo certbot --nginx -d aiyax.com
+### Stop nginx server of certbox
+nginx -s stop
+
 ## chatGPT 被封的解决办法
 
 使用  `cloudflare-warp` 来解决, 具体执行的命令

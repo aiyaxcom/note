@@ -1,0 +1,1 @@
+cat /proc/${PID}/cmdline | xargs -0 echo

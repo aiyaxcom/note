@@ -4,6 +4,13 @@ sudo certbot --nginx -d aiyax.com
 ### Stop nginx server of certbox
 nginx -s stop
 
+
+### linux 命令行客户端
+
+1. 从 [github](https://github.com/v2ray/v2ray-core/releases) 上下载 linux 版本
+2. 从手机或电脑上导出一个配置, 保存成 [config.json](./v2ray/config.json)
+3. `/data/devp/cli/v2ray/v4.31.0/v2ray --config=/data/devp/workspace/alex/wiki/wiki/gfw/v2ray/config.json`
+
 ## chatGPT 被封的解决办法
 
 使用  `cloudflare-warp` 来解决, 具体执行的命令

@@ -55,3 +55,46 @@
     ```
     
     如果你收到了 "Congratulations, all renewals succeeded" 的消息，证明自动更新已配置成功。
+
+
+
+## From Alex
+# 建议每次申请都先查看 Let's Encrypt 和 Certbot 的官方网站, 查看是否有更新
+
+# sudo apt update
+# sudo apt install snapd
+# sudo snap install core; sudo snap refresh core
+# # 使用 snap 安装 certbot, 也可以通过 apt 安装, 但是 certbot 推荐使用 snap
+# sudo snap install --classic certbot
+# # 配置全局的命令, 感觉并不需要呢
+# sudo ln -s /snap/bin/certbot /usr/bin/certbot
+# # 申请证书, 它会提示添加一个 TXT 类型的 dns 解析, 然后输出一个证书路径
+# certbot certonly  -d *.dev.aplat.net --manual --preferred-challenges dns --server https://acme-v02.api.letsencrypt.org/directory
+
+# 推荐使用 docker
+export OUTPUT_DIR="$(pwd)/letsencrypt_$(date "+%m_%d_%H_%M_%S")"
+mkdir -p "$OUTPUT_DIR"
+docker run -it --rm --name certbot \
+            -v "${OUTPUT_DIR}/etc/letsencrypt:/etc/letsencrypt" \
+            -v "${OUTPUT_DIR}/var/lib/letsencrypt:/var/lib/letsencrypt" \
+            certbot/certbot certonly \
+              -d '*.aplat.net' \
+              --manual \
+              --preferred-challenges dns \
+              --server 'https://acme-v02.api.letsencrypt.org/directory'
+# 生成的证书在这里
+tree "${OUTPUT_DIR}/etc/letsencrypt/archive/"
+
+# renew
+docker run -it --rm --name certbot \
+            -v "${OUTPUT_DIR}/etc/letsencrypt:/etc/letsencrypt" \
+            -v "${OUTPUT_DIR}/var/lib/letsencrypt:/var/lib/letsencrypt" \
+            certbot/certbot renew
+
+
+
+## 2023-06-09
+
+今天发现有些企业在使用阿里云的HTTPS证书服务，按年收费，还不便宜，2000RMB
+
+找我，始终只收一半费用

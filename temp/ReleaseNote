@@ -1,0 +1,26 @@
+1. Create account table
+
+```
+CREATE TABLE `account` (
+  `account_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `requested_api_calls` int DEFAULT NULL,
+  `free_api_calls` int NOT NULL DEFAULT '5',
+  `remaining_api_calls` int NOT NULL DEFAULT '5',
+  `size_of_all_requests` bigint NOT NULL DEFAULT '0',
+  `subscribed` bigint NOT NULL DEFAULT '0',
+  `member` tinyint NOT NULL DEFAULT '0',
+  `member_expire_time` timestamp NULL DEFAULT NULL,
+  `deleted` tinyint NOT NULL DEFAULT '0',
+  PRIMARY KEY (`account_id`),
+  KEY `idx_user_id` (`user_id`),
+  INDEX `idx_subscribed` (`subscribed`),
+  INDEX `idx_member` (`member`),
+  INDEX `idx_deleted` (`deleted`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+```
+
+## 数据迁移
+现有的user都生成account?

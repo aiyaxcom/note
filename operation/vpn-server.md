@@ -1,3 +1,13 @@
+## 在服务器上直接安装
+
+[一键安装脚本](https://github.com/233boy/v2ray)
+
+执行下面脚本进行安装
+```bash
+# 官方方案 bash <(curl -s -L https://git.io/v2ray.sh) 不可用, 参考 https://github.com/233boy/v2ray/issues/181
+sudo bash -c "$(curl -s -L https://git.io/v2ray.sh)"
+```
+
 ## Https证书
 ### 生成证书
 sudo certbot --nginx -d aiyax.com

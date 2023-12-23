@@ -12,7 +12,7 @@
 安装 Docker Compose：
 
 1.  安装 Python pip：`sudo apt install python3-pip`
-2.  安装 Docker Compose：`sudo pip install docker-compose`
+2.  安装 Docker Compose：`sudo pip install docker-compose`，如果报错可以尝试    `sudo apt-get install docker-compose`
 3.  通过运行 `docker-compose --version` 确认 Docker Compose 安装成功。
 
 --------------------

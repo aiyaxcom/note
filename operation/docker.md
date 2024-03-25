@@ -9,6 +9,36 @@
 7.  如果要让特权用户（非root）可以运行 Docker，则需要将该用户添加到 docker 组：`sudo usermod -aG docker your_username`
 8.  通过运行 `docker run hello-world` 确认 Docker 安装成功。
 
+```
+#!/bin/bash
+
+# 更新 apt 软件包索引
+sudo apt update
+
+# 安装必需的软件包
+yes | sudo apt install -y apt-transport-https ca-certificates curl gnupg-agent software-properties-common
+
+# 添加 Docker 的 GPG 密钥
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+# 添加 Docker 的 apt 仓库
+yes | sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+
+# 再次更新 apt 软件包索引
+sudo apt update
+
+# 安装 Docker
+yes | sudo apt install -y docker-ce docker-ce-cli containerd.io
+
+# 如果要让特权用户（非root）可以运行 Docker，则需要将该用户添加到 docker 组
+# 请将 "your_username" 替换为您的用户名
+sudo usermod -aG docker your_username
+
+# 通过运行 docker run hello-world 确认 Docker 安装成功
+docker run hello-world
+
+```
+
 安装 Docker Compose：
 
 1.  安装 Python pip：`sudo apt install python3-pip`
